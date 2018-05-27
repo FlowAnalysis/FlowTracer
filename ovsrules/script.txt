@@ -1,0 +1,21 @@
+ovs-ofctl add-group s1 group_id=1,type=select,selection_method=hash,fields'(nw_src,nw_dst,tcp_dst,tcp_src,dl_vlan,nw_ttl)',bucket=weight:4,push_vlan:0x8100,set_field:1-\>vlan_vid,mod_nw_tos:4,normal,bucket=weight:6,dec_ttl,normal -O openflow15
+ovs-ofctl add-group s2 group_id=1,type=select,selection_method=hash,fields'(nw_src,nw_dst,tcp_dst,tcp_src,dl_vlan,nw_ttl)',bucket=weight:4,push_vlan:0x8100,set_field:2-\>vlan_vid,mod_nw_tos:4,normal,bucket=weight:6,dec_ttl,normal -O openflow15
+ovs-ofctl add-group s3 group_id=1,type=select,selection_method=hash,fields'(nw_src,nw_dst,tcp_dst,tcp_src,dl_vlan,nw_ttl)',bucket=weight:4,push_vlan:0x8100,set_field:3-\>vlan_vid,mod_nw_tos:4,normal,bucket=weight:6,dec_ttl,normal -O openflow15
+ovs-ofctl add-group s4 group_id=1,type=select,selection_method=hash,fields'(nw_src,nw_dst,tcp_dst,tcp_src,dl_vlan,nw_ttl)',bucket=weight:4,push_vlan:0x8100,set_field:4-\>vlan_vid,mod_nw_tos:4,normal,bucket=weight:6,dec_ttl,normal -O openflow15
+ovs-ofctl add-flow s1 priority=30,nw_tos=8,ip,actions=normal
+ovs-ofctl add-flow s2 priority=30,nw_tos=8,ip,actions=normal
+ovs-ofctl add-flow s3 priority=30,nw_tos=8,ip,actions=normal
+ovs-ofctl add-flow s4 priority=30,nw_tos=8,ip,actions=normal
+ovs-ofctl add-flow s1 priority=20,nw_tos=4,ip,actions=push_vlan:0x8100,set_field:1-\>vlan_vid,mod_nw_tos:8,normal -O openflow15
+ovs-ofctl add-flow s2 priority=20,nw_tos=4,ip,actions=push_vlan:0x8100,set_field:2-\>vlan_vid,mod_nw_tos:8,normal -O openflow15
+ovs-ofctl add-flow s3 priority=20,nw_tos=4,ip,actions=push_vlan:0x8100,set_field:3-\>vlan_vid,mod_nw_tos:8,normal -O openflow15
+ovs-ofctl add-flow s4 priority=20,nw_tos=4,ip,actions=push_vlan:0x8100,set_field:4-\>vlan_vid,mod_nw_tos:8,normal -O openflow15
+ovs-ofctl add-flow s1 priority=10,ip,actions=group:1 -O openflow15
+ovs-ofctl add-flow s2 priority=10,ip,actions=group:1 -O openflow15
+ovs-ofctl add-flow s3 priority=10,ip,actions=group:1 -O openflow15
+ovs-ofctl add-flow s4 priority=10,ip,actions=group:1 -O openflow15
+=group:1 -O openflow15
+ovs-ofctl add-flow s5 priority=30,ip,in_port:1actions=strip_vlan,strip_vlan,output:2
+ovs-ofctl add-flow s6 priority=30,ip,in_port:1actions=strip_vlan,strip_vlan,output:2
+ovs-ofctl add-flow s5 priority=20,in_port:2actions=output:1
+ovs-ofctl add-flow s6 priority=20,in_port:2actions=output:1
