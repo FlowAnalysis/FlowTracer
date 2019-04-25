@@ -12,7 +12,7 @@ import json
 
 
 def find_file(dir,tmp):
-    '''查找目录下最新的文件'''
+    '''search latest file'''
     file_lists = os.listdir(dir)
     if len(file_lists) == 0:
         return 'no files'
@@ -76,7 +76,7 @@ if __name__=="__main__":
         time.sleep(5)
         f = find_file(dir,tmp)
         if f.split('.')[-1] != 'pcap':
-            print("暂无日志")
+            print("no file")
             tmp = ''
             continue
         else:
@@ -101,7 +101,7 @@ if __name__=="__main__":
         l = tolist(flow,flow_c,pathdict,dst)  
         with open("pathinfo.json","w") as f:
             json.dump(l,f)
-            print("写入日志完成")
+            print("file written")
         
 
 
