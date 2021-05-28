@@ -1,5 +1,9 @@
 # FlowTracer
-FlowTracer: Detour Route Monitor on Commodity Openflow Switch with Few Flowentries
+
+#### FlowTracer: An Effective Flow Trajectory Detection Solution Based on Probabilistic Packet Tagging in SDN-Enabled Networks,
+published in *IEEE Transactions on Network and Service Management*.
+
+please find the manuscript from [here](http://jxiao.wang/papers/flowtracer-tnsm.pdf).
 
 ## How to build
 
@@ -31,4 +35,4 @@ FlowTracer: Detour Route Monitor on Commodity Openflow Switch with Few Flowentri
         root@localhost:~$ mininet> h2 python -m SimpleHTTPServer 80 &
         root@localhost:~$ mininet> h2 wget -O h1
 
-`Enjoy!`
+7. Enjoy!
