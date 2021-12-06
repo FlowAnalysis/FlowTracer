@@ -3,7 +3,7 @@
 #### FlowTracer: An Effective Flow Trajectory Detection Solution Based on Probabilistic Packet Tagging in SDN-Enabled Networks,
 published in *IEEE Transactions on Network and Service Management*.
 
-please find the manuscript from [here](http://jxiao.wang/papers/flowtracer-tnsm.pdf).
+please find the manuscript from [here](https://ieeexplore.ieee.org/document/8809253).
 
 ## How to build
 
